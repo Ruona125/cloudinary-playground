@@ -36,6 +36,9 @@ export default function Upload() {
     };
     try {
       let res = await axios.post("/api/upload", data, headers);
+      if (res.status === 200) {
+        console.log("uploaded");
+      }
     } catch (err) {
       console.log(err);
     }
