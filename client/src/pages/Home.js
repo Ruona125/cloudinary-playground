@@ -22,15 +22,19 @@ export default function Home() {
   return (
     <div>
       <p>this is the home page</p>
+
       {imageIds &&
         imageIds.map((imageId, index) => (
-          <Image
-            key={index}
-            cloudName="dz7pivxws"
-            publicId={imageId}
-            width="300"
-            crop="scale"
-          />
+          <div>
+            <Image
+              key={index}
+              cloudName="dz7pivxws"
+              publicId={imageId}
+              width="300"
+              crop="scale"
+            />
+            <h1>hello</h1>
+          </div>
         ))}
     </div>
   );

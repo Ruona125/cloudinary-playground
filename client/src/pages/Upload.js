@@ -5,6 +5,7 @@ export default function Upload() {
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
+  const [details, setDetails] = useState("");
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -30,6 +31,7 @@ export default function Upload() {
     console.log(base64EncodedImage);
     const data = {
       data: base64EncodedImage,
+      details: details,
     };
     const headers = {
       "Content-Type": "application/json",
@@ -37,6 +39,8 @@ export default function Upload() {
     try {
       let res = await axios.post("/api/upload", data, headers);
       if (res.status === 200) {
+        setFileInputState("");
+        setDetails("");
         console.log("uploaded");
       }
     } catch (err) {
@@ -52,6 +56,12 @@ export default function Upload() {
           name="input"
           onChange={handleFileInputChange}
           value={fileInputState}
+        />
+        <input
+          type="text"
+          name="details"
+          onChange={(e) => setDetails(e.target.value)}
+          value={details}
         />
         <button type="submit">Submit</button>
       </form>
