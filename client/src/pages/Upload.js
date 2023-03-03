@@ -28,7 +28,6 @@ export default function Upload() {
   };
 
   const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
     const data = {
       data: base64EncodedImage,
       details: details,
@@ -37,7 +36,11 @@ export default function Upload() {
       "Content-Type": "application/json",
     };
     try {
-      let res = await axios.post("/api/upload", data, headers);
+      let res = await axios.post(
+        "http://localhost:8000/api/upload",
+        data,
+        headers
+      );
       if (res.status === 200) {
         setFileInputState("");
         setDetails("");
@@ -65,9 +68,9 @@ export default function Upload() {
         />
         <button type="submit">Submit</button>
       </form>
-      {previewSource && (
+      {/* {previewSource && (
         <img src={previewSource} alt="chosen" style={{ height: "300px" }} />
-      )}
+      )} */}
     </div>
   );
 }
